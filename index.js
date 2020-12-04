@@ -1,13 +1,16 @@
-const express = require('express');
+const express = require("express");
+require("dotenv").config();
 
+// init app
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('data');
-})
+//routers
+const homeRoute = require("./router/home");
 
-app.listen(3000, (err) => {
-    if (err) console.log(`there is an error \n ${err}`);
+app.use("/", homeRoute);
 
-    console.log('server listening on port 3000');
-})
+app.listen(process.env.PORT, (err) => {
+  if (err) console.log(`there is an error \n ${err}`);
+
+  console.log("server listening on port ", process.env.PORT);
+});

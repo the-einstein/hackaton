@@ -1,5 +1,13 @@
-const express = require('express')
+const express = require("express");
 
-const router = express.Router()
+const router = express.Router();
 
-module.exports.homeRouter = router;
+router.get("/next", (req, res) => {
+  res.send("/ route");
+});
+
+router.get("/", (req, res) => {
+  res.send("/ next");
+});
+
+module.exports = router;
