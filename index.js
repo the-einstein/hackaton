@@ -4,6 +4,9 @@ require("dotenv").config();
 // init app
 const app = express();
 
+//Middlewares
+app.use(express.static("public"));
+
 //routers
 const homeRoute = require("./router/home");
 
