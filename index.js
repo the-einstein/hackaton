@@ -24,14 +24,11 @@ app.use(express.json());
 app.use(cors());
 
 //routers
-const homeRoute = require("./router/home");
 const userRouter = require("./router/user");
 const appRouter = require("./router/application");
 const organRouter = require("./router/organ");
 
 //Route middlewares
-app.use("/", homeRoute);
-
 app.use("/user", userRouter);
 
 app.use("/app", appRouter);
