@@ -27,6 +27,7 @@ app.use(cors());
 const homeRoute = require("./router/home");
 const userRouter = require("./router/user");
 const appRouter = require("./router/application");
+const organRouter = require("./router/organ");
 
 //Route middlewares
 app.use("/", homeRoute);
@@ -34,6 +35,8 @@ app.use("/", homeRoute);
 app.use("/user", userRouter);
 
 app.use("/app", appRouter);
+
+app.use("/organ", organRouter);
 
 app.listen(process.env.PORT || 8000, (err) => {
   if (err) console.log(`there is an error \n ${err}`);
