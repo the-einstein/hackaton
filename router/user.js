@@ -1,17 +1,8 @@
 const express = require("express");
 const User = require("../model/User");
-const Joi = require("@hapi/joi");
+const { registerValidate } = require("../validation/validate");
 
 const router = express.Router();
-
-//validation
-
-const userSchema = Joi.object({
-  name: Joi.string().min(5).required(),
-  phone: Joi.string().min(9).required(),
-  password: Joi.string().min(8).max(25).required(),
-  passport: Joi.string().min(9).required(),
-});
 
 router.get("/register", (req, res) => {
   res.send("register");
@@ -19,8 +10,11 @@ router.get("/register", (req, res) => {
 
 router.post("/register", async (req, res) => {
   //validate
-  const { error } = userSchema.validate(req.body);
-  if (error) res.send(error.details[0].message);
+  const { error } = registerValidate(req.body);
+  if (error) return res.status(400).send({ error: error.details[0].message });
+
+  const userExists = await User.findOne({ passport: req.body.passport });
+  if (userExists) return res.status(400).send({ error: "User exists" });
 
   const user = new User({
     name: req.body.name,
@@ -38,7 +32,9 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const tempUser = await User.findOne({ phone: req.body.phone });
+  const tempUser = await User.findOne({
+    $or: [{ phone: req.body.phone }, { passport: req.body.passport }],
+  });
   res.send(tempUser);
 });
 
