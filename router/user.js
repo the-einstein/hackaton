@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcryptjs");
 const User = require("../model/User");
 const { registerValidate } = require("../validation/validate");
 
@@ -13,13 +14,18 @@ router.post("/register", async (req, res) => {
   const { error } = registerValidate(req.body);
   if (error) return res.status(400).send({ error: error.details[0].message });
 
+  //check user existanse
   const userExists = await User.findOne({ passport: req.body.passport });
   if (userExists) return res.status(400).send({ error: "User exists" });
+
+  //HASH  THE PASSWORD
+  const salt = await bcrypt.genSalt(10);
+  const hashPassword = await bcrypt.hash(req.body.password, salt);
 
   const user = new User({
     name: req.body.name,
     passport: req.body.passport,
-    password: req.body.password,
+    password: hashPassword,
     phone: req.body.phone,
   });
 
@@ -35,6 +41,11 @@ router.post("/login", async (req, res) => {
   const tempUser = await User.findOne({
     $or: [{ phone: req.body.phone }, { passport: req.body.passport }],
   });
+  if (!tempUser) return res.status(400).send({ error: "User does not exist" });
+
+  const validPas = await bcrypt.compare(req.body.password, tempUser.password);
+  if (!validPas) return res.status(400).send({ error: "wrong password" });
+
   res.send(tempUser);
 });
 
