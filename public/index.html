@@ -26,22 +26,37 @@
     </pre>
     <h1>Login API (on development, only returns user)</h1>
     <h3>post request to <a href="https://api-data-chellenge.herokuapp.com/user/login">https://api-data-chellenge.herokuapp.com/user/login</a></h3>
-    <code>
-        <pre>
+    <pre>
+        <code>
             {
                 phone: "999643690",
                 password: "password"
             }
-        </pre>
-    </code>
+        </code>
+    </pre>
     <h3>or</h3>
-    <code>
-        <pre>
+    <pre>
+        <code>
             {
                 passport: "AB5466773",
                 password: "password"
             }
-        </pre>
-    </code>
+        </code>
+    </pre>
+    <h1>Application form API</h1>
+    <h3>post reques to <a href="https://api-data-chellenge.herokuapp.com/app/new">https://api-data-chellenge.herokuapp.com/app/new</a></h3>
+    <pre>
+        <code>
+            {
+                title: "required: title of form (corruptin, sanitary, ...)"
+                details: "required: text of application",
+                to: "required: Organ id to which application form is sent",
+                from: "required: Application user id",
+                score: "required: score given for organ",
+                proofs: "file or files",
+                anonymous: "boolean"
+            }
+        </code>
+    </pre>
 </body>
 </html>
