@@ -37,4 +37,9 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.post("/login", async (req, res) => {
+  const tempUser = await User.findOne({ phone: req.body.phone });
+  res.send(tempUser);
+});
+
 module.exports = router;
