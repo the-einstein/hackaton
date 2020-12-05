@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
-const organSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const organSchema = new Schema({
   name: {},
   region: {},
   score: {},

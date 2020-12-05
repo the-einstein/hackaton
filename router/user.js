@@ -1,5 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const User = require("../model/User");
 const { registerValidate } = require("../validation/validate");
 
@@ -43,10 +45,13 @@ router.post("/login", async (req, res) => {
   });
   if (!tempUser) return res.status(400).send({ error: "User does not exist" });
 
+  //compare passwords
   const validPas = await bcrypt.compare(req.body.password, tempUser.password);
   if (!validPas) return res.status(400).send({ error: "wrong password" });
 
-  res.send(tempUser);
+  //assign token
+  const token = jwt.sign({ _id: tempUser._id }, process.env.TOKEN_SECRET);
+  res.header("auth-token", token).send({ token: token });
 });
 
 module.exports = router;
