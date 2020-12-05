@@ -1,17 +1,26 @@
 const express = require("express");
 require("dotenv").config();
 const monggose = require("mongoose");
+const cors = require("cors");
 
 // init app
 const app = express();
 
 //connect to DB
-monggose.connect(process.env.MONGO_DB, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+monggose.connect(
+  process.env.MONGO_DB,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => {
+    console.log("Connected to the server");
+  }
+);
 
 //Middlewares
+app.use(express.json());
+app.use(cors());
 
 //routers
 const homeRoute = require("./router/home");
