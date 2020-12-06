@@ -9,6 +9,10 @@ const userSchema = new Schema(
     passport: {},
     password: {},
     role: {},
+    organ: {
+      type: Schema.Types.ObjectId,
+      ref: "organ",
+    },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );

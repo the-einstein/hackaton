@@ -8,6 +8,11 @@ router.get("/", (req, res) => {
   res.send("ok");
 });
 
+router.get("/all", auth, (req, res) => {
+  console.log(req.user);
+  res.send(req.user);
+});
+
 router.post("/new", auth, async (req, res) => {
   const applct = new Application({
     title: req.body.title,
