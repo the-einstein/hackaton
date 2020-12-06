@@ -18,7 +18,7 @@ router.post("/new", auth, async (req, res) => {
     title: req.body.title,
     details: req.body.details,
     to: req.body.to,
-    from: req.body.from,
+    from: req.user._id,
     score: req.body.score,
     proofs: req.body.proofs,
     anonymous: req.body.anonymous,
