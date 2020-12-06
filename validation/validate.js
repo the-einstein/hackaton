@@ -6,6 +6,7 @@ const registerValidate = (data) => {
     phone: Joi.string().min(9).required(),
     password: Joi.string().min(8).max(25).required(),
     passport: Joi.string().min(9).required(),
+    organ: Joi.string().min(6),
   });
 
   return userSchema.validate(data);

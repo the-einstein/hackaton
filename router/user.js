@@ -29,6 +29,7 @@ router.post("/register", async (req, res) => {
     passport: req.body.passport,
     password: hashPassword,
     phone: req.body.phone,
+    organ: req.body.organ,
   });
 
   try {

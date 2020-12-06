@@ -7,12 +7,27 @@ const auth = require("../verifyToken");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const organs = await Organ.find();
+  const organs = await Organ.aggregate([
+    {
+      $lookup: {
+        from: "application",
+        localField: "_id",
+        foreignField: "to",
+        as: score,
+      },
+    },
+  ]);
+  console.log(organs);
   res.send(organs);
 });
 
 router.post("/new", auth, async (req, res) => {
-  res.send("ok");
+  const tempOrgan = new Organ({
+    name: req.body.name,
+    region: req.body.region,
+  });
+  const organ = await tempOrgan.save();
+  res.send(organ);
 });
 
 router.get("/regions", async (req, res) => {
