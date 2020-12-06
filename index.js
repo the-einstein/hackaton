@@ -19,9 +19,9 @@ monggose.connect(
 );
 
 //Middlewares
-app.use(express.static("public"));
 app.use(express.json());
 app.use(cors());
+app.use(express.static("public"));
 
 //routers
 const userRouter = require("./router/user");
