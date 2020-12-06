@@ -1,68 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+
+	<title>Svelte app</title>
+
+	<link rel='icon' type='image/png' href='/favicon.png'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel='stylesheet' href='/global.css'>
+	<link rel='stylesheet' href='/build/bundle.css'>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script defer src='/build/bundle.js'></script>
 </head>
+
 <body>
-    <h1>Registration API</h1>
-    <h3>post request to <a href="https://api-data-chellenge.herokuapp.com/user/register"> https://api-data-chellenge.herokuapp.com/user/register</a></h3>
-    <pre>
-        <code>
-            {
-                name: "name minimum 5 characters",
-                phone: "minimum 9 charackters",
-                password: "minimum 8 charackters",
-                passport: "passport serial number, minimum 9 charackters"
-            }
-        </code>
-    </pre>
-    <h3>If error returns error massage</h3>
-    <pre>
-        <code>
-            "name" length must be at least 5 characters long
-        </code>
-    </pre>
-    <h1>Login API (on development, only returns user)</h1>
-    <h3>post request to <a href="https://api-data-chellenge.herokuapp.com/user/login">https://api-data-chellenge.herokuapp.com/user/login</a></h3>
-    <pre>
-        <code>
-            {
-                phone: "999643690",
-                password: "password"
-            }
-        </code>
-    </pre>
-    <h3>or</h3>
-    <pre>
-        <code>
-            {
-                passport: "AB5466773",
-                password: "password"
-            }
-        </code>
-    </pre>
-    <h1>Application form API</h1>
-    <h3>post reques to <a href="https://api-data-chellenge.herokuapp.com/app/new">https://api-data-chellenge.herokuapp.com/app/new</a></h3>
-    <pre>
-        <code>
-            {
-                title: "required: title of form (corruptin, sanitary, ...)"
-                details: "required: text of application",
-                to: "required: Organ id to which application form is sent",
-                from: "required: Application user id",
-                score: "required: score given for organ",
-                proofs: "file or files",
-                anonymous: "boolean"
-            }
-        </code>
-    </pre>
-    <h1>Getting all organs list</h1>
-    <h3>get request to <a href="https://api-data-chellenge.herokuapp.com/organ">https://api-data-chellenge.herokuapp.com/organ</a></h3>
-    <h3>returns array of objexts</h3>
-    <h1>Getting Region list</h1>
-    <h3>get request to <a href="https://api-data-chellenge.herokuapp.com/organ/regions">https://api-data-chellenge.herokuapp.com/organ/regions</a></h3>
-    <h3>returns only Tashkent city</h3>
 </body>
 </html>
