@@ -8,9 +8,9 @@ router.get("/", (req, res) => {
   res.send("ok");
 });
 
-router.get("/all", auth, (req, res) => {
-  console.log(req.user);
-  res.send(req.user);
+router.get("/all", auth, async (req, res) => {
+  const apps = await Application.find({ to: req.user._id, anonymous: false });
+  res.send(apps);
 });
 
 router.post("/new", auth, async (req, res) => {
