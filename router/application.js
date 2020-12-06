@@ -1,5 +1,6 @@
 const express = require("express");
 const Application = require("../model/Application");
+const User = require("../model/User");
 const auth = require("../verifyToken");
 
 const router = express.Router();
@@ -9,7 +10,8 @@ router.get("/", (req, res) => {
 });
 
 router.get("/all", auth, async (req, res) => {
-  const apps = await Application.find({ to: req.user._id, anonymous: false });
+  const user = await User.findOne({ _id: req.user._id });
+  const apps = await Application.find({ to: user.organ });
   res.send(apps);
 });
 
