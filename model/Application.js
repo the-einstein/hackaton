@@ -10,10 +10,12 @@ const applicationSchema = new Schema(
     proofs: {},
     score: {},
     to: {
-      // type: Schema.Types.ObjectId, ref: "organ"
+      type: Schema.Types.ObjectId,
+      ref: "organ",
     },
     from: {
-      // type: Schema.Types.ObjectId, ref: "user"
+      type: Schema.Types.ObjectId,
+      ref: "user",
     },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
